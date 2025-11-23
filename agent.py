@@ -1,6 +1,8 @@
+import os
 import math
 from dotenv import load_dotenv
-from strands import tool
+from strands import Agent, tool
+from strands.models.ollama import OllamaModel
 
 load_dotenv()
 
@@ -26,3 +28,19 @@ def calculadora(expressao: str) -> str:
     except Exception as erro:
         return f"Erro ao calcular: {str(erro)}"
     
+def criar_agente():
+    modelo = OllamaModel(
+        host=os.getenv("OLLAMA_HOST"),
+        model_id=os.getenv("OLLAMA_MODEL"),
+        temperature=0.1
+    )
+
+    agente = Agent(
+        model=modelo,
+        tools=[calculadora],
+        system_prompt="Você é um assistente útil. Se o usuário pedir uma conta matemática, use a ferramenta calculadora para resolver."
+    )
+
+    return agente
+
+meu_agente = criar_agente()
