@@ -49,13 +49,11 @@ pip install -r requirements.txt
 
 ### 4\. Configurar Variáveis (.env)
 
-Crie um arquivo chamado `.env` na raiz do projeto e cole o conteúdo abaixo:
+Duplique o arquivo chamado `.env.example` na raiz do projeto e renomeie-o para `.env`:
 
-```ini
-API_HOST=127.0.0.1
-API_PORT=8000
-OLLAMA_HOST=http://localhost:11434
-OLLAMA_MODEL=llama3.1
+```bash
+# Comando rápido para criar o.env (Linux/Mac/Git Bash)
+cp.env.example.env
 ```
 
 -----
@@ -74,7 +72,7 @@ A API estará rodando em `http://127.0.0.1:8000`.
 
 ## 🧪 Como Testar
 
-### Teste Manual (Swagger UI)
+### Teste Manual
 
 1.  Acesse `http://127.0.0.1:8000/docs` no seu navegador.
 2.  Vá no endpoint `POST /chat` e clique em **Try it out**.
