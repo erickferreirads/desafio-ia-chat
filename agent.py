@@ -37,18 +37,17 @@ def criar_agente():
         host=os.getenv("OLLAMA_HOST"),
         model_id=os.getenv("OLLAMA_MODEL"),
         temperature=0.1,
-        keep_alive="5m"
+        keep_alive="1h"
     )
 
-    agente = Agent(
+    return Agent(
         model=modelo,
         tools=[calculadora],
-        system_prompt="Você é um assistente de IA útil e preciso. "
+        system_prompt=("Você é um assistente de IA útil e preciso. "
                 "Para qualquer pergunta que envolva cálculos matemáticos, "
                 "você DEVE utilizar a ferramenta 'calculadora' disponível. "
                 "Não tente adivinhar o resultado."
+        )
     )
-    print("Agente inicializado com sucesso.")
-    return agente
 
 meu_agente = criar_agente()

@@ -5,19 +5,19 @@ import uvicorn
 import os
 
 class PedidoChat(BaseModel):
-    mensagem: str
+    message: str
 
 class RespostaChat(BaseModel):
-    resposta: str
+    response: str
 
-app = FastAPI(title="Minha API de Chat com IA")
+app = FastAPI(title="Dreamsquad AI Chat")
 
 @app.post("/chat", response_model=RespostaChat)
 async def conversar(pedido: PedidoChat):
     try:
-        resposta_ia = str(meu_agente(pedido.mensagem))
+        resposta_ia = str(meu_agente(pedido.message))
 
-        return RespostaChat(resposta=resposta_ia)
+        return RespostaChat(response=resposta_ia)
     except Exception as e:
         print(f"Erro: {e}")
         raise HTTPException(status_code=500, detail="Erro ao processar a solicitação.")

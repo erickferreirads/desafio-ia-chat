@@ -28,8 +28,8 @@ def test_api_chat_responde_200(mock_agente):
     
     mock_agente.return_value = "Resposta de teste"
 
-    response = client.post("/chat", json={"mensagem": "Olá, IA!"})
+    response = client.post("/chat", json={"message": "Olá, IA!"})
     assert response.status_code == 200
 
     json_response = response.json()
-    assert json_response["resposta"] == "Resposta de teste"
+    assert json_response["response"] == "Resposta de teste"
